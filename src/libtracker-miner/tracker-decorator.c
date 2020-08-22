@@ -676,6 +676,8 @@ decorator_count_remaining_items (TrackerDecorator *decorator)
 
 	priv = decorator->priv;
 
+	decorator_update_state (decorator, "Checking unextracted elements", TRUE);
+
 	if (!priv->item_count_query)
 		priv->item_count_query = create_prepared_statement (decorator, clauses);
 
@@ -910,7 +912,7 @@ tracker_decorator_initable_init (GInitable     *initable,
 				  G_CALLBACK (notifier_events_cb),
 				  decorator);
 
-	decorator_update_state (decorator, "Idle", FALSE);
+	decorator_update_state (decorator, "Initializing", FALSE);
 	return TRUE;
 }
 
